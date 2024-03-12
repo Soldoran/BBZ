@@ -1,0 +1,2 @@
+# Ignoriere alle Dateien mit der Endung .py.*~ (* ist eine Wildcard)
+*.py.*~
