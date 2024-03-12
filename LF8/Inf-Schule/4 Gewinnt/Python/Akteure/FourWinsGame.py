@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
 #Imports
+import Player as PlayerClass
+import GUI as GUI
+import Fields as Fields
+import RuleSet as RuleSet
 
 class FourWinsGame:
 
