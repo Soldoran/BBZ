@@ -1,2 +1,9 @@
-# Ignoriere alle Dateien mit der Endung .py.*~ (* ist eine Wildcard)
+# Ignore temporary files
+*.*~
+
+#Just to be save
+*.txt~
+*.txt*~
+
+*.py~
 *.py.*~
