@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Imports
+import random
 
 class Player:
 

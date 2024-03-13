@@ -5,10 +5,16 @@
 class Field:
 
 # Konstruktor
-    def __init__(self, fields, lastRow, lastCol):
-        self.fields = fields
-        self.lastRow = lastRow
-        self.lastCol = lastCol
+    def __init__():
+        # Das leere Spielfeld instanziieren
+        self.fields = [
+                [" ", " ", " ", " ", " ", " ", " "],
+                [" ", " ", " ", " ", " ", " ", " "],
+                [" ", " ", " ", " ", " ", " ", " "],
+                [" ", " ", " ", " ", " ", " ", " "],
+                [" ", " ", " ", " ", " ", " ", " "],
+                [" ", " ", " ", " ", " ", " ", " "]
+                ]
 
         pass
 
@@ -16,8 +22,11 @@ class Field:
     def getFields():
         return self.fields
 
-    def setFields(fields):
-        self.fields = fields
+    def setFields(col, val):
+        # Diese beiden werden an späterer Stelle wohl mit lastRow und lastCol ersetzt werden
+        rangeRow = 6
+        rangeCol = 7
+        
 
     def getLastRow():
         return self.lastRow
