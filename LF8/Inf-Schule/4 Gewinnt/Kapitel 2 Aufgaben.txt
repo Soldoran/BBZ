@@ -73,3 +73,11 @@ Siehe Aufgabe 1 aus Unterkapitel 2
 #######################################################################################
 
 Unterkapitel 3
+
+Siehe Objektdiagramm-ConnectFour-Datei
+
+#######################################################################################
+
+Unterkapitel 4	
+
+Aufgaben Ausschließlich in bereits bestehenden Dateien
