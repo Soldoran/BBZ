@@ -30,5 +30,14 @@ class Player:
         return self.gameMode
 
     def playDraw(self, gui):
-        # Logik für GUI
-        pass
+        # Mensch oder Computer
+        if (self.name != ("Spieler" + self.player_id))
+            # Mensch
+            col = gui.getDraw(self.__name)
+            return col
+        else
+            # Computer
+            # Zufallsentscheidung
+            col = random.randint(0,6)
+            print ("Col: " + str(col))
+            return col
