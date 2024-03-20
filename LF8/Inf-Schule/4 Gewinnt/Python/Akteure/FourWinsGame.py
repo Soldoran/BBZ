@@ -1,21 +1,25 @@
 # -*- coding: utf-8 -*-
 
 #Imports
-import Player
-import GUI
-import Fields
-import RuleSet
+from Player import Player
+from GUI import GUI
+from Field import Field
+from RuleSet import RuleSet
 import os
 
 class FourWinsGame:
 
 # Konstruktor
-    def __init__(self, player1: Player, player2: Player, gui: GUI, fields: Fields, ruleSet: RuleSet):
-        self.player1 = PlayerClass
-        self.player2 = PlayerClass
-        self.gui = gui
-        self.fields = fields
-        self.ruleSet = ruleSet
+    def __init__(self, player1ID: chr, player2ID: chr):
+        self.player1ID = player1ID
+        self.player2ID = player2ID
+
+        # Initialisieren der Attribute mit Standardwerten
+        self.player1 = None
+        self.player2 = None
+        self.gui = None
+        self.ruleSet = None
+        self.fields = None
 
 # Funktionen
     def initializeGame(self):
@@ -23,15 +27,31 @@ class FourWinsGame:
         Initialisieren des Spieles.
         Abfragen der Spielerdaten (Name, Spielmodus)
         '''
-        # Name und Spielmodus für Spieler 1, sowie die playerID
-        self.player1.setName(self.gui.getName())
-        self.player1.setGameMode(self.gui.getGameMode(self.player1.getName()))
-        self.player1.setID('X')
+        # Das Spielfeld initialisieren
+        self.fields = Field()
 
-        # Name und Spielmodus für Spieler 2, sowie die playerID
-        self.player2.setName(self.gui.getName())
-        self.player2.setGameMode(self.gui.getGameMode(self.player2.getName()))
-        self.player2.setID('O')
+        # Das RuleSet initialisieren
+        self.ruleSet = RuleSet()
+
+        # Das GUI initialisieren
+        self.gui = GUI()
+
+        # Initialisieren Spieler 1
+        self.player1 = Player
+        name = self.gui.getName(1)
+        gM = self.gui.getGameMode(name)
+        iD = self.player1ID
+        self.player1 = Player(iD, gM, name)
+
+        # Initialisieren Spieler 2
+        self.player2 = Player
+        name = self.gui.getName(2)
+        gM = self.gui.getGameMode(name)
+        iD = self.player2ID
+        self.layer2 = Player(iD, gM, name)
+
+
+
 
     def startGame(self):
         '''
@@ -70,6 +90,7 @@ class FourWinsGame:
                 continue
             else:
                 # Zug ist legal, also muss nichts weiter getan werden
+                pass
 
             # Nun kann der Zug ausgeführt werden
             self.fields.setFields(curDraw, currentPlayer.getID())
@@ -79,6 +100,7 @@ class FourWinsGame:
 
             if gameStopped:
                 # Der Spieler hat gewonnen
+                pass
             else:
                 # Überprüfen ob es noch einen legalen Zug gibt, ansonsten wird das Spiel nicht gestoppt
                 gameStopped != self.ruleSet.checkGameOver(self.fields.getFields())
@@ -89,13 +111,7 @@ class FourWinsGame:
         # Ende der while not Loop
 
 if __name__ == '__main__':
-    p1 = Player()
-    p2 = Player()
-    gui = GUI()
-    fields = Fields()
-    rules = RuleSet()
-
-    gameManager = FourWinsGame(p1, p2, gui, fields, rules)
+    gameManager = FourWinsGame('X','O')
 
     gameManager.initializeGame()
     gameManager.startGame()

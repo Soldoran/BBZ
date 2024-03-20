@@ -15,15 +15,16 @@ class GUI:
         '''
         Das Spielfeld ausgeben
         '''
-        for row in field:                   # Für jede Reihe in field
-            for cell in row:                # Für jede Zelle in einer Reihe
-
+        for i, row in enumerate(field):                   # Für jede Reihe in field
+            for j, cell in enumerate(row):                # Für jede Zelle in einer Reihe
+                #print("|")
                 print(cell, end=" ")        # Den Inhalt der Zelle ausgeben und durch 'end=" "' fangen wir hier keine neue Zeile an, sondern fügen ein Leerzeichen hinzu
 
-                if cell < len(row):         # Solange die Zelle nicht die letzte in der Reihe ist
+                if j < len(row):         # Solange die Zelle nicht die letzte in der Reihe ist
                     print("|", end=" ")     # Wird ein Trennzeichen hinzugefügt
 
-            if row < len(field):            # Prüfen ob wir uns in der letzten Reihe befinden
+            print()
+            if i <= len(field):            # Prüfen ob wir uns in der letzten Reihe befinden
                 for cell in row:            # Nun noch einmal iterieren um die Reihen optisch voneinander besser trennen zu können
                     print("---", end="")    # Für Jede Zelle geben wir '---' gefolgt von einem end="" (Kein Zeilenumsprung am ende)
                 print()                     # print() gibt uns einen Zeilenumbruch am Ende der Schleife
@@ -32,7 +33,7 @@ class GUI:
         '''
         Den Namen des Spielers abfragen
         '''
-        name = input('Namen für Spieler ' + playerNr + ': ') 
+        name = input('Namen für Spieler ' + str(playerNr) + ': ') 
         return name
 
     def getGameMode(self, name):
@@ -46,12 +47,12 @@ class GUI:
         gM_Eingabe = "\n\t[2] = Per Eingabe"
 
         while gM_spieler == 0:
-            gM_string = input(f"Wähle den Spielmodus für Spieler '{name}':{gM_Zufall}{gM_Eingabe}")
+            gM_string = input(f"Wähle den Spielmodus für Spieler '{name}':{gM_Zufall}{gM_Eingabe}\n\nSpielmodus: ")
 
             if gM_string.isdigit():
                 gM_Spieler = int(gM_string)
 
-            if gM_Spieler == 1 || gM_Spieler == 2:
+            if gM_Spieler == 1 or gM_Spieler == 2:
                 break            
             else:
                 gM_Spieler = 0

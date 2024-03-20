@@ -5,7 +5,7 @@ import random
 class Player:
 
 # Konstruktor
-   def __init__(self, player_id, game_mode, name=None):
+    def __init__(self, player_id, game_mode, name=None):
        self.player_id = player_id
        self.game_mode = game_mode
 
@@ -36,13 +36,16 @@ class Player:
 
     def playDraw(self, gui):
         # Mensch oder Computer
-        if (self.name != ("Spieler" + self.player_id))
+        if (self.name != ("Spieler" + self.player_id)):
             # Mensch
             col = gui.getDraw(self.__name)
             return col
-        else
+        else:
             # Computer
             # Zufallsentscheidung
             col = random.randint(0,6)
             print ("Col: " + str(col))
             return col
+
+if __name__ == '__name__':
+    p = Player

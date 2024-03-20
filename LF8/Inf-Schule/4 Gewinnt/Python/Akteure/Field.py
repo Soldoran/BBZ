@@ -5,30 +5,22 @@
 class Field:
 
 # Konstruktor
-    def __init__():
+    def __init__(self):
         # Das leere Spielfeld instanziieren
-        self.fields = [
-                [" ", " ", " ", " ", " ", " ", " "],
-                [" ", " ", " ", " ", " ", " ", " "],
-                [" ", " ", " ", " ", " ", " ", " "],
-                [" ", " ", " ", " ", " ", " ", " "],
-                [" ", " ", " ", " ", " ", " ", " "],
-                [" ", " ", " ", " ", " ", " ", " "]
-                ]
+        self.fields = [[" " for _ in range(7)] for _ in range(6)]
 
-        pass
 
 # Funktionen
-    def getFields():
+    def getFields(self):
         return self.fields
 
     def setFields(self, col, val):
-        if (0 <= col < len(self.__fields[0])):          # Wenn 'col' größer oder gleich 0 ist und gleichzeitig kleiner der länge einer Reihe ist
-            row = len(self.__fields) - 1
+        if (0 <= col < len(fields[0])):          # Wenn 'col' größer oder gleich 0 ist und gleichzeitig kleiner der länge einer Reihe ist
+            row = len(self.fields) - 1
 
         while row >= 0:                                 # Iterrieren solange 'row' größer oder gleich 0 ist
-            if self.__fields[row][col] == " ":          # Nun schauen ob das Feld leer ist, und wenn ja, einen Stein platzieren
-                self.__fields[row][col] = val
+            if self.fields[row][col] == " ":          # Nun schauen ob das Feld leer ist, und wenn ja, einen Stein platzieren
+                self.fields[row][col] = val
                 return True                             # Zug war gültig
 
             row -= 1                                    # Wir gehen eine Reihe weiter nach oben
@@ -36,8 +28,8 @@ class Field:
         return False                                    # Zug war ungültig
 
 
-    def getLastRow():
+    def getLastRow(self):
         return self.lastRow
 
-    def setLastCol():
+    def setLastCol(self):
         return self.lastCol
