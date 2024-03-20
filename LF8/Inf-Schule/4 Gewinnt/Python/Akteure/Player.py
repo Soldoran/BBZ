@@ -30,6 +30,10 @@ class Player:
     def getGameMode(self):
         return self.gameMode
 
+    def setgameMode(self, gameMode: int):
+        # Diese Klasse ist von Inf-Schule nicht vorgesehen
+        self.gameMode = gameMode
+
     def playDraw(self, gui):
         # Mensch oder Computer
         if (self.name != ("Spieler" + self.player_id))
