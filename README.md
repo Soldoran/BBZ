@@ -20,3 +20,5 @@ Das Spiel "4 Gewinnt" soll in Python umgesetzt werden.
 | []    | Waagerechte Siegbedingung erlaubt manchmal ein Leeres Feld zwischen 2 zweierblöcken und löst aus |
 | []    | Diagonale Siegbedingungen können am Rand fälschlicherweise auslösen |
 | [x]   | <s>Spieler können Spalte 7 nicht spielen</s> |
+
+[LF 8 README.md](LF8/README.md)
