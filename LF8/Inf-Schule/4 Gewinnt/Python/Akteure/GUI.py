@@ -69,8 +69,8 @@ class GUI:
         '''
         while True:
             try:
-                column = int(input(f"{name} is am Zug. Bitte gebe die Spaltennummer ein, in der du deinen Stein platzieren möchtest (1-6): "))
-                if 1 <= column <= 6:
+                column = int(input(f"{name} is am Zug. Bitte gebe die Spaltennummer ein, in der du deinen Stein platzieren möchtest (1-7): "))
+                if 1 <= column <= 7:
                     return column - 1
                 else:
                     print("Ungültige Eingabe! Bite gib eine Zahl zwischen 1 und 6 ein.")
