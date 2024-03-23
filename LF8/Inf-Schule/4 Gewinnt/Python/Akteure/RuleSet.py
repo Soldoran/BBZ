@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 #Imports
+from Player import Player
+from Field import Field
+import os
 
 class RuleSet:
 
@@ -32,11 +35,11 @@ class RuleSet:
 
         # Check Rows
         for row in fields:
-            for col in row:
-                if col == teamcolor:
-                    touchingStones.append(col)
+            for column in row:
+                if column == teamcolor:
+                    touchingStones.append(column)
                 else:
-                    if col != lastCol:
+                    if column != lastCol:
                         touchingStones = []
 
         if len(touchingStones) == 4:
@@ -44,8 +47,8 @@ class RuleSet:
 
         # Check Columns
         for row in fields:
-            if col == teamcolor:
-                touchingStones.append(col)
+            if row[col] == teamcolor:
+                touchingStones.append(row[col])
             else:
                 touchingStones = []
 
@@ -61,7 +64,7 @@ class RuleSet:
         # Check Diagonal von rechts oben nach links unten
         for i in range(len(fields) - 3):
             for j in range(len(fields[0]) - 3):
-                if all(fields[i-k][j-k] == teamcolor for k in range(4)):
+                if all(fields[i+k][j-k] == teamcolor for k in range(4)):
                     return True
 
         return False
@@ -72,4 +75,96 @@ class RuleSet:
         Überprüfen ob es noch freie Felder in der letzten Reihe gibt, um einen legalen Zug auszuführen
         '''
         fields = field.getFields()
-        return all(cell == " " for cell in fields[-1])   # Da beim letzten legalen Zug in der obersten Reihe ein freies Feld sein muss, reicht es, sich diese Zeile anzuschauen
+        return all(cell != " " for cell in fields[-1])   # Da beim letzten legalen Zug in der obersten Reihe ein freies Feld sein muss, reicht es, sich diese Zeile anzuschauen
+
+if __name__ == '__main__':
+    rules = RuleSet()
+    field = Field()
+
+    # Testfelder für Siegbedingungen
+    fullField = [["Z" for _ in range(7)] for _ in range(6)]
+    turnField = [
+            ["O", " ", " ", " ", " ", " ", " "],
+            ["X", " ", " ", " ", " ", " ", " "],
+            ["O", " ", " ", " ", " ", " ", " "],
+            ["X", " ", " ", " ", " ", " ", " "],
+            ["O", " ", " ", " ", " ", " ", " "],
+            ["X", " ", " ", " ", " ", " ", " "]
+            ]
+    horizontalWinField = [
+            [" ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " ", " ", " "],
+            ["O", "O", "O", " ", " ", " ", " "],
+            ["X", "X", "X", "X", " ", " ", " "]
+            ]
+
+    verticalWinField = [
+            [" ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " ", " ", " "],
+            ["X", " ", " ", " ", " ", " ", " "],
+            ["X", "O", " ", " ", " ", " ", " "],
+            ["X", "O", " ", " ", " ", " ", " "],
+            ["X", "O", " ", " ", " ", " ", " "]
+            ]
+    diagonalLeftRightWinField = [
+            [" ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " ", " ", " "],
+            ["X", " ", " ", " ", " ", " ", " "],
+            ["O", "X", " ", " ", " ", " ", " "],
+            ["X", "O", "X", " ", " ", " ", " "],
+            ["O", "X", "O", "X", " ", " ", " "]
+            ]
+    diagonalRightLeftWinField = [
+            [" ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", " ", " ", " ", " "],
+            [" ", " ", " ", "X", " ", " ", " "],
+            [" ", " ", "X", "O", " ", " ", " "],
+            [" ", "X", "O", "X", " ", " ", " "],
+            ["X", "O", "X", "O", " ", " ", " "]
+            ]
+
+    # Clear Screen
+    os.system("cls")
+
+    # Initialisieren des Spielers zum TestenWin
+    player = Player("X", 2, "Bob")
+
+    # Testen der Logik für legalen Zug
+    field.fields = turnField
+    print("Testing legal move. Expection: False")
+    val = rules.checkDraw(field.fields, 0)
+    print(f"Result: {val}\n")
+
+    # Testen der Logik ob ein Spieler Gewonnen hat (in mehreren Schritten)
+    # Schritt 1: Horizontal
+    field.fields = horizontalWinField
+    print("Testing horizontal Win. Expection: True")
+    val = rules.checkPlayerWon(field, player, 3)
+    print(f"Result: {val}\n")
+
+    # Schritt 2: Vertikal
+    field.fields = verticalWinField
+    print("Testing vertical Win. Expection: True")
+    val = rules.checkPlayerWon(field, player, 0)
+    print(f"Result: {val}\n")
+
+    # Schritt 3: Diagonal von Links oben nach Rechts unten
+    field.fields = diagonalLeftRightWinField
+    print("Testing diagonal upper left to lower right Win. Expection: True")
+    val = rules.checkPlayerWon(field, player, 3)
+    print(f"Result: {val}\n")
+
+    # Schritt 4 Diagnoal von Rechts oben nach links unten
+    field.fields = diagonalRightLeftWinField
+    print("Testing diagonal upper right to lower left Win. Expection: True")
+    val = rules.checkPlayerWon(field, player, 3)
+    print(f"Result: {val}\n")
+
+    # Testen der Logik ob das Spiel im unentschieden endet
+    field.fields = fullField
+    print("Testing Game Over ('Game tied'). Expection: True")
+    val = rules.checkGameOver(field)
+    print(f"Result: {val}\n")
+    input("Tests Complete.\nPress Enter to Exit")
