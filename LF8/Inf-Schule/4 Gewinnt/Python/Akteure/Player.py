@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Imports
 import random
+import os
 
 class Player:
 
@@ -47,5 +48,26 @@ class Player:
             print ("Col: " + str(col))
             return col
 
-if __name__ == '__name__':
-    p = Player
+if __name__ == '__main__':
+    os.system("cls")
+
+    print(f"Initialize Player: Bob")
+    p = Player('O', 2, "Bob")
+
+    print(f"Player named '{p.getName()}' initialized.")
+    print(f"Change Playername from '{p.getName()}' to 'Alfred'.")
+    p.setName('Alfred')
+    print(f"New Playername is: {p.getName()}")
+
+    print(f"Current PlayerID is: '{p.getID()}'")
+    print(f"Set PlayerID to 'X'")
+    p.setID('X')
+    print(f"New PlayerID for Player '{p.getName()}' is: {p.getID()}")
+
+    print(f"Current Gamemode for '{p.getName()}' is: {p.getGameMode()}")
+    print(f"Change Gamemode...")
+    p.setgameMode(1)
+    print(f"New Gamemode for Player '{p.getName()}' is: {p.getGameMode()}")
+
+    print("Testing complete.")
+    input("Press Enter to Exit.")
