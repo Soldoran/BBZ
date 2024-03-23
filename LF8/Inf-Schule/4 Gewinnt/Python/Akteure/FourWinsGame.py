@@ -37,20 +37,16 @@ class FourWinsGame:
         self.gui = GUI()
 
         # Initialisieren Spieler 1
-        self.player1 = Player
         name = self.gui.getName(1)
         gM = self.gui.getGameMode(name)
         iD = self.player1ID
         self.player1 = Player(iD, gM, name)
 
         # Initialisieren Spieler 2
-        self.player2 = Player
         name = self.gui.getName(2)
         gM = self.gui.getGameMode(name)
         iD = self.player2ID
-        self.layer2 = Player(iD, gM, name)
-
-
+        self.player2 = Player(iD, gM, name)
 
 
     def startGame(self):
@@ -59,7 +55,7 @@ class FourWinsGame:
         '''
         gameStopped = False
         turnCount = 1
-        currentPlayer = self.player1
+        currentPlayer = None
         curDraw = 0
         legalDraw = True
         gameisDraw = False
@@ -87,7 +83,7 @@ class FourWinsGame:
             if not legalDraw:
                 print("Zug kann nicht ausgeführt werden. Drücke Enter-Taste um den Zug zu wiederholen.")
                 input()
-                continue
+                continue        # Springt zum Anfang der Schleife zurück
             else:
                 # Zug ist legal, also muss nichts weiter getan werden
                 pass
@@ -96,14 +92,21 @@ class FourWinsGame:
             self.fields.setFields(curDraw, currentPlayer.getID())
 
             # Überprüfen ob das Spiel beendet ist
-            gameStopped = self.ruleSet.checkPlayerWon(self.fields.getFields(), currentPlayer, curDraw)
+            gameStopped = self.ruleSet.checkPlayerWon(self.fields, currentPlayer, curDraw)
 
             if gameStopped:
                 # Der Spieler hat gewonnen
+                os.system("cls")        # Leert das Fenster
+
+                # Das Spielfeld zeichnen
+                self.gui.outputField(self.fields.getFields())
+
+                print(f"{currentPlayer.getName()} hat gewonnen!")
+                input("Drücke Enter zum beenden.")
                 pass
             else:
                 # Überprüfen ob es noch einen legalen Zug gibt, ansonsten wird das Spiel nicht gestoppt
-                gameStopped != self.ruleSet.checkGameOver(self.fields.getFields())
+                gameStopped != self.ruleSet.checkGameOver(self.fields)
 
             # Den nächsten Zug vorbereiten
             turnCount += 1

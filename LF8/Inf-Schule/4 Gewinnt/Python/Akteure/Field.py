@@ -15,7 +15,7 @@ class Field:
         return self.fields
 
     def setFields(self, col, val):
-        if (0 <= col < len(fields[0])):          # Wenn 'col' größer oder gleich 0 ist und gleichzeitig kleiner der länge einer Reihe ist
+        if (0 <= col < len(self.fields[0])):          # Wenn 'col' größer oder gleich 0 ist und gleichzeitig kleiner der länge einer Reihe ist
             row = len(self.fields) - 1
 
         while row >= 0:                                 # Iterrieren solange 'row' größer oder gleich 0 ist
@@ -29,7 +29,7 @@ class Field:
 
 
     def getLastRow(self):
-        return self.lastRow
+        return self.fields[-1]
 
-    def setLastCol(self):
-        return self.lastCol
+    def getLastCol(self):
+        return self.fields[0][-1]
