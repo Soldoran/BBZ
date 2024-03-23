@@ -15,19 +15,24 @@ class GUI:
         '''
         Das Spielfeld ausgeben
         '''
-        for i, row in enumerate(field):                   # Für jede Reihe in field
-            for j, cell in enumerate(row):                # Für jede Zelle in einer Reihe
-                #print("|")
-                print(cell, end=" ")        # Den Inhalt der Zelle ausgeben und durch 'end=" "' fangen wir hier keine neue Zeile an, sondern fügen ein Leerzeichen hinzu
 
+        print("| 1 | 2 | 3 | 4 | 5 | 6 | 7 |")
+        print("-----------------------------")
+        print()
+
+        for i, row in enumerate(field):                   # Für jede Reihe in field
+            print("|", end=" ")
+
+            for j, cell in enumerate(row):                # Für jede Zelle in einer Reihe
+                print(cell, end=" ")        # Den Inhalt der Zelle ausgeben und durch 'end=" "' fangen wir hier keine neue Zeile an, sondern fügen ein Leerzeichen hinzu
                 if j < len(row):         # Solange die Zelle nicht die letzte in der Reihe ist
                     print("|", end=" ")     # Wird ein Trennzeichen hinzugefügt
 
             print()
             if i <= len(field):            # Prüfen ob wir uns in der letzten Reihe befinden
                 for cell in row:            # Nun noch einmal iterieren um die Reihen optisch voneinander besser trennen zu können
-                    print("---", end="")    # Für Jede Zelle geben wir '---' gefolgt von einem end="" (Kein Zeilenumsprung am ende)
-                print()                     # print() gibt uns einen Zeilenumbruch am Ende der Schleife
+                    print("----", end="")    # Für Jede Zelle geben wir '---' gefolgt von einem end="" (Kein Zeilenumsprung am ende)
+                print("-")                     # print() gibt uns einen Zeilenumbruch am Ende der Schleife
 
     def getName(self, playerNr):
         '''
