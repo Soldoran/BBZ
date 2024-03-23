@@ -56,17 +56,47 @@ class RuleSet:
             return True
 
         # Check Diagonal von links oben nach rechts unten
-        for i in range(len(fields) - 3):
-            for j in range(len(fields[0]) - 3):
-                if all(fields[i+k][j+k] == teamcolor for k in range(4)):
-                    return True
+        for (i, row) in enumerate(fields):
+            if i < len(fields) - 3:
+                for (j, col) in enumerate(row):
+                    if j > len(row) - 4:
+                        # Diagonale nicht möglich
+                        continue
+                    else:
+                        # Diagonale möglich
+                        if (row[j] == teamcolor and
+                            fields[i + 1][j + 1] == teamcolor and
+                            fields[i + 2][j + 2] == teamcolor and
+                            fields[i + 3][j + 3] == teamcolor):
+                            return True
+                        else:
+                            #print(f"Checked: '{row[j]}' + '{row[j+1]}' + '{row[j+2]}' + '{row[j+3]}'")
+                            pass
+            else:
+                # Zu wenig Zeilen nach unten hin
+                continue
 
         # Check Diagonal von rechts oben nach links unten
-        for i in range(len(fields) - 3):
-            for j in range(len(fields[0]) - 3):
-                if all(fields[i+k][j-k] == teamcolor for k in range(4)):
-                    return True
-
+        for (i, row) in enumerate(fields):
+            if i < len(fields) - 3:
+                for (j, col) in enumerate(row):
+                    if j < len(row) - 4:
+                        # Diagonale nicht möglich
+                        continue
+                    else:
+                        # Diagonale möglich
+                        if (row[j] == teamcolor and
+                            fields[i + 1][j - 1] == teamcolor and
+                            fields[i + 2][j - 2] == teamcolor and
+                            fields[i + 3][j - 3] == teamcolor):
+                            return True
+                        else:
+                            pass
+            else:
+                # Zu wenig Zeilen nach unten hin
+                continue
+        
+        # Keine Siegbedingung wurde erfüllt
         return False
 
 
