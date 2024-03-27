@@ -88,7 +88,7 @@ class FourWinsGame:
             # Überprüpfen ob der Zug legal ist
             legalDraw = self.ruleSet.checkDraw(self.fields.getFields(), curDraw)
 
-            if not legalDraw:
+            if not legalDraw and currentPlayer.getGameMode() != 1:
                 print("Zug kann nicht ausgeführt werden. Drücke Enter-Taste um den Zug zu wiederholen.")
                 input()
                 continue        # Springt zum Anfang der Schleife zurück

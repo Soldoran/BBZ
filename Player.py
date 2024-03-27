@@ -20,7 +20,7 @@ class Player:
         self.playerID = player_id
         self.gameMode = game_mode
 
-         if name is None:
+        if name is None:
             self.name = "Spieler " + str(player_id)
         else:
             self.name = name

@@ -29,7 +29,7 @@ class GUI:
             print("|", end=" ")
 
             for j, cell in enumerate(row):
-                print(cell, end=" ")<        # Den Inhalt der Zelle ausgeben und durch 'end=" "' fangen wir hier keine neue Zeile an, sondern fügen ein Leerzeichen hinzu
+                print(cell, end=" ")        # Den Inhalt der Zelle ausgeben und durch 'end=" "' fangen wir hier keine neue Zeile an, sondern fügen ein Leerzeichen hinzu
                 if j < len(row):         # Solange die Zelle nicht die letzte in der Reihe ist
                     print("|", end=" ")     # Wird ein Trennzeichen hinzugefügt
 
