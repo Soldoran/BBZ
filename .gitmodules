@@ -1,0 +1,3 @@
+[submodule "Connect4"]
+	path = Connect4
+	url = https://github.com/Soldoran/Connect4
