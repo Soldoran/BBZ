@@ -5,26 +5,31 @@ import os
 
 class GUI:
 
-# Konstruktor
     def __init__(self):
+        '''
+        Konstruktor für die Klasse GUI.
+        '''
         pass
 
 
-# Funktionen
     def outputField(self, field):
         '''
-        Das Spielfeld ausgeben
+        Gibt das Spielfeld für den Spieler in der Anwendung aus.
+
+        Parameter:
+        field: string[][]
+            Das Spielfeld als 2-Dimensionales String-Array
         '''
 
         print("| 1 | 2 | 3 | 4 | 5 | 6 | 7 |")
         print("-----------------------------")
         print()
 
-        for i, row in enumerate(field):                   # Für jede Reihe in field
+        for i, row in enumerate(field):
             print("|", end=" ")
 
-            for j, cell in enumerate(row):                # Für jede Zelle in einer Reihe
-                print(cell, end=" ")        # Den Inhalt der Zelle ausgeben und durch 'end=" "' fangen wir hier keine neue Zeile an, sondern fügen ein Leerzeichen hinzu
+            for j, cell in enumerate(row):
+                print(cell, end=" ")<        # Den Inhalt der Zelle ausgeben und durch 'end=" "' fangen wir hier keine neue Zeile an, sondern fügen ein Leerzeichen hinzu
                 if j < len(row):         # Solange die Zelle nicht die letzte in der Reihe ist
                     print("|", end=" ")     # Wird ein Trennzeichen hinzugefügt
 

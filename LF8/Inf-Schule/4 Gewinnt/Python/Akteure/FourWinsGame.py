@@ -11,10 +11,18 @@ class FourWinsGame:
 
 # Konstruktor
     def __init__(self, player1ID: chr, player2ID: chr):
+        '''
+        Konstruktor der Klasse FourWinsGame.
+
+        Parameter:
+        player1ID: chr
+            Das Symbol welches für Spieler 1 verwendet wird
+        player2ID: chr
+            Das Symbol welches für Spieler 2 verwendet wird
+        '''
         self.player1ID = player1ID
         self.player2ID = player2ID
 
-        # Initialisieren der Attribute mit Standardwerten
         self.player1 = None
         self.player2 = None
         self.gui = None
@@ -24,8 +32,8 @@ class FourWinsGame:
 # Funktionen
     def initializeGame(self):
         '''
-        Initialisieren des Spieles.
-        Abfragen der Spielerdaten (Name, Spielmodus)
+        Initialisieren des Spielfeldes 'fields', des Regelsets 'ruleSet', des GUI 'gui',
+        der Spieler 'player1' und 'player2' sowie das Abfragen der Spielernamen und Spielmodi und setzen der playerIDs
         '''
         # Das Spielfeld initialisieren
         self.fields = Field()
@@ -51,7 +59,7 @@ class FourWinsGame:
 
     def startGame(self):
         '''
-        Das Starten der eigentlichen Gameloop
+        Startet das Spiel.
         '''
         gameStopped = False
         turnCount = 1

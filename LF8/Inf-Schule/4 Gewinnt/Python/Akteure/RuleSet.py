@@ -9,22 +9,33 @@ class RuleSet:
 
 # Konstruktor
     def __init__(self):
+        '''
+        Konstruktor für die Klasse RuleSet.
+        '''
         pass
 
 
 # Funktionen
     def checkDraw(self, field, col):
         '''
-        Überprüfen ob ein Zug legal ist (In der Spalte war noch Platz)
+        Prüft ob ein Spielfeld noch frei belegbar ist.
+        Wenn ja:
+            gibt 'True' zurück, andernfalls 'False'
         '''
-        for row in field:        # Wir gehen jede Reihe einmal durch, mit 'row[col]' schauen wir anschließend an die richtige Koordinate
+        for row in field:
             if row[col] == " ":
-                return True         # Hier ist es egal, wo in der Spalte der Zug legal ist, daher können wir bei einem Treffer direkt 'True' zurückgeben
-        return False                # Wir hatten keinen Treffer, also ist der Zug nicht legal. Wir geben 'False' zurück
+                return True
+        return False
 
     def checkPlayerWon(self, field, player, col):
         '''
-        Überprüfen ob der letzte Zug einen Spieler zum Sieg geführt hat
+        Prüft ob ein der 4 Siegbedingungen
+            Vertikal,
+            Horizontal,
+            Diagonal Links oben nach Rechts unten,
+            Diagonal von Rechts oben nach Links unten
+        erfüllt ist und gibt im Falle 'True' zurück.
+        Andernfalls wird 'False' zurückgegeben.
         '''
         # Variablen
         fields = field.getFields()
@@ -70,7 +81,6 @@ class RuleSet:
                             fields[i + 3][j + 3] == teamcolor):
                             return True
                         else:
-                            #print(f"Checked: '{row[j]}' + '{row[j+1]}' + '{row[j+2]}' + '{row[j+3]}'")
                             pass
             else:
                 # Zu wenig Zeilen nach unten hin
@@ -102,10 +112,11 @@ class RuleSet:
 
     def checkGameOver(self, field):
         '''
-        Überprüfen ob es noch freie Felder in der letzten Reihe gibt, um einen legalen Zug auszuführen
+        Prüft ob die oberste Reihe bereits mit Spielersymbolen gefüllt ist.
+        Wenn ja, wird 'True' zurück gegeben, andernfalls 'False'.
         '''
         fields = field.getFields()
-        return all(cell != " " for cell in fields[-1])   # Da beim letzten legalen Zug in der obersten Reihe ein freies Feld sein muss, reicht es, sich diese Zeile anzuschauen
+        return all(cell != " " for cell in fields[-1])
 
 if __name__ == '__main__':
     rules = RuleSet()

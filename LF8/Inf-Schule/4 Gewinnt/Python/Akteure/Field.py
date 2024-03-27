@@ -1,35 +1,59 @@
 # -*- coding: utf-8 -*-
 
-#Imports
-
 class Field:
 
-# Konstruktor
     def __init__(self):
-        # Das leere Spielfeld instanziieren
+        '''
+        Konstruktor der Klasse Field.
+        Initialisiert ein Leeres Spielfeld.
+        Dimension des Spielfeldes:
+            7 Breit
+            6 Hoch
+        '''
         self.fields = [[" " for _ in range(7)] for _ in range(6)]
 
-
-# Funktionen
     def getFields(self):
+        '''
+        Getter für das Spielfeld.
+        Gibt das Spielfeld zurück.
+        '''
         return self.fields
 
     def setFields(self, col, val):
-        if (0 <= col < len(self.fields[0])):          # Wenn 'col' größer oder gleich 0 ist und gleichzeitig kleiner der länge einer Reihe ist
+        '''
+        Überprüft ob in der gewählten Spalte noch mindestens ein freies Feld verfügbar ist,
+        setzt in die Spalte 'col' den Wert der SpielerID 'val' und gibt anschließend 'True' zurück,
+        andernfalls 'False'.
+
+        Parameter:
+        col: int
+            Die Spalte, in welche der Spielstein gesetzt werden soll
+        val: chr
+            Der Character des Spielers, welcher in die nächste freie Position gesetzt werden soll
+        '''
+        if (0 <= col < len(self.fields[0])):
             row = len(self.fields) - 1
 
-        while row >= 0:                                 # Iterrieren solange 'row' größer oder gleich 0 ist
-            if self.fields[row][col] == " ":          # Nun schauen ob das Feld leer ist, und wenn ja, einen Stein platzieren
+        while row >= 0:
+            if self.fields[row][col] == " ":
                 self.fields[row][col] = val
-                return True                             # Zug war gültig
-
-            row -= 1                                    # Wir gehen eine Reihe weiter nach oben
-
-        return False                                    # Zug war ungültig
+                return True
+            else:
+                row -= 1
+        # Es wurde kein Gültiger Zug gefunden
+        return False
 
 
     def getLastRow(self):
+        '''
+        Getter für die Letzte Reihe des Spielfeldes.
+        Gibt die letzte Reihe des Spielfeldes zurück.
+        '''
         return self.fields[-1]
 
     def getLastCol(self):
+        '''
+        Getter für die letzte Spalte des Spielfeldes.
+        Gibt die letzte Spalte des Spielfeldes zurück.
+        '''
         return self.fields[0][-1]
