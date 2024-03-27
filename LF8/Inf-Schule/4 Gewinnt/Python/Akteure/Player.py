@@ -102,7 +102,6 @@ class Player:
             # Computer
             # Zufallsentscheidung
             col = random.randint(0,6)
-            print ("Col: " + str(col))
             return col
 
 if __name__ == '__main__':

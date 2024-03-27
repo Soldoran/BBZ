@@ -41,7 +41,11 @@ class GUI:
 
     def getName(self, playerNr):
         '''
-        Den Namen des Spielers abfragen
+        Den Namen des Spielers abfragen.
+
+        Parameter:
+        playerNR: int
+            Die Spielernummer in der Zugreihenfolge.
         '''
         name = input('Namen für Spieler ' + str(playerNr) + ': ') 
         return name
@@ -76,6 +80,10 @@ class GUI:
     def getDraw(self, name):
         '''
         Fragt den Spieler in welche Spalte er einen Stein schmeißen möchte
+
+        Parameter:
+        name: string
+            Der Name des Spielers.
         '''
         while True:
             try:
